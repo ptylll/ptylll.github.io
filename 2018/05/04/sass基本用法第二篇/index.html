@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #000; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="sass,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="上篇介绍sass的变量 嵌套规则 嵌套属性本篇介绍sass 使用SASS部分文件  静默注释 混合器">
+<meta name="keywords" content="sass">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sass基本用法第二篇">
+<meta property="og:url" content="https://ptylll.github.io/2018/05/04/sass基本用法第二篇/index.html">
+<meta property="og:site_name" content="PTY">
+<meta property="og:description" content="上篇介绍sass的变量 嵌套规则 嵌套属性本篇介绍sass 使用SASS部分文件  静默注释 混合器">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-15T03:29:32.896Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="sass基本用法第二篇">
+<meta name="twitter:description" content="上篇介绍sass的变量 嵌套规则 嵌套属性本篇介绍sass 使用SASS部分文件  静默注释 混合器">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://ptylll.github.io/2018/05/04/sass基本用法第二篇/">
+
+
+
+
+
+  <title>sass基本用法第二篇 | PTY</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">PTY</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">勤能补拙</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-标签">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ptylll.github.io/2018/05/04/sass基本用法第二篇/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="PTY">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PTY">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">sass基本用法第二篇</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-04T21:30:49+08:00">
+                2018-05-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,218字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>上篇介绍sass的变量 嵌套规则 嵌套属性<br>本篇介绍sass 使用SASS部分文件  静默注释 混合器<br><a id="more"></a></p>
+<h5 id="sass-导入文件"><a href="#sass-导入文件" class="headerlink" title="sass 导入文件"></a>sass 导入文件</h5><p>在css中我们引入其他的css文件会用 @import ,这样做有一个缺点，只有当执行到@import的时候，浏览器才会去执行下载别的css文件,导致页面加载速度很慢。<br>sass 也有 @import 规则，但是不同的是，sass在css生成文件时候就把相关文件导入进来，这样得目的是吧多个css样式归纳到同一个css 文件中,不用去额外的去请求下载。<br>使用sass的@import规则并不需要指明被导入文件的全名。你可以省略.sass或.scss文件后缀（见下图）。这样，在不修改样式表的前提下，你完全可以随意修改你或别人写的被导入的sass样式文件语法，在sass和scss语法之间随意切换。举例来说，@import”sidebar”;这条命令将把sidebar.scss文件中所有样式添加到当前样式表中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@import &quot;colors&quot;;</span><br><span class="line">@import &quot;grid&quot;;</span><br><span class="line">@import &quot;mixin&quot;;</span><br><span class="line">//上面相当于 sass引入了三个文件</span><br><span class="line"></span><br><span class="line">colors.sass</span><br><span class="line">grid.sass</span><br><span class="line">mixin.sass</span><br></pre></td></tr></table></figure>
+<h6 id="sass-默认变量值-（-default）"><a href="#sass-默认变量值-（-default）" class="headerlink" title="sass 默认变量值 （!default）"></a>sass 默认变量值 （!default）</h6><p>一般情况下，你反复声明一个变量，只有最后一处声明有效且它会覆盖前边的值。<br>如果分配给变量的值后面添加了!default标志 ，这意味着该变量如果已经赋值，那么它不会被重新赋值，但是，如果它尚未赋值，那么它会被赋予新的给定值。<br>示例:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">$blue: #0084ff;</span><br><span class="line">$blue-darker: darken($blue, 5);</span><br><span class="line">$color: #f00;</span><br><span class="line">$color: #ccc !default;</span><br><span class="line">body &#123;</span><br><span class="line">  background: #20262E;</span><br><span class="line">  padding: 20px;</span><br><span class="line">  font-family: Helvetica;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#box&#123;</span><br><span class="line">  background: #fff;</span><br><span class="line">  border-radius: 4px;</span><br><span class="line">  padding: 20px;</span><br><span class="line">  font-size: 25px;</span><br><span class="line">  text-align: center;</span><br><span class="line">  transition: all 0.2s;</span><br><span class="line">  margin: 0 auto;</span><br><span class="line">  width: 300px;</span><br><span class="line">  color:$color; </span><br><span class="line"> &#125;</span><br><span class="line"> 上面的代码表示</span><br><span class="line"> 如果$color未定义的话 color默认颜色#ccc;如果另外设定了$color样式,默认的$color:#ccc会被覆盖掉</span><br></pre></td></tr></table></figure></p>
+<script async src="//jsfiddle.net/ptylll/hnwL1xhx/embed/html,css,result/"></script>
+
+<h6 id="sass嵌套导入"><a href="#sass嵌套导入" class="headerlink" title="sass嵌套导入"></a>sass嵌套导入</h6><p>由于sass有@import 规则。这种导入方式下，生成对应的css文件时，局部文件会被直接插入到css规则内导入它的地方。</p>
+<p>示例 theme-bule.sass内容如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">aside&#123;</span><br><span class="line">    color:#ccc;</span><br><span class="line">    background-color:#f00;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>另一个 mixin.sass 文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">.bule-theme&#123;</span><br><span class="line">   @import &quot;theme-bule&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//上面代码编译为</span><br><span class="line"></span><br><span class="line">.bule-theme&#123;</span><br><span class="line">   aside&#123;</span><br><span class="line">       color:#ccc;</span><br><span class="line">       background-color:#f00;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="静默注释-和"><a href="#静默注释-和" class="headerlink" title="静默注释 (/ / 和 //)"></a>静默注释 (/<em> </em>/ 和 //)</h5><p>Sass 支持标准的CSS多行注释以/<em> </em>/以及单行注释 //。在尽可能的情况下，多行注释会被保留在输出的CSS中，而单行注释会被删除。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">* This comment is</span><br><span class="line"> * several lines long.</span><br><span class="line"> * since it uses the CSS comment syntax,</span><br><span class="line"> * it will appear in the CSS output. */</span><br><span class="line">body &#123; color: black; &#125;</span><br><span class="line"></span><br><span class="line">// These comments are only one line long each.</span><br><span class="line">// They won&apos;t appear in the CSS output,</span><br><span class="line">// since they use the single-line comment syntax.</span><br><span class="line">a &#123; color: green; &#125;</span><br><span class="line">//编译为</span><br><span class="line">/* This comment is</span><br><span class="line"> * several lines long.</span><br><span class="line"> * since it uses the CSS comment syntax,</span><br><span class="line"> * it will appear in the CSS output. */</span><br><span class="line">body &#123;</span><br><span class="line">  color: black; &#125;</span><br><span class="line"></span><br><span class="line">a &#123;</span><br><span class="line">  color: green; &#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="混合器（mixin）"><a href="#混合器（mixin）" class="headerlink" title="混合器（mixin）"></a>混合器（mixin）</h5><p>混合器(mixin)允许您定义可以在整个样式表中重复使用的样式，而避免了使用无语意的类（class），比如 .float-left。混入(mixin)还可以包含所有的CSS规则，以及任何其他在Sass文档中被允许使用的东西。<br>他们甚至可以带arguments，引入变量，只需少量的混入(mixin)代码就能输出多样化的样式。</p>
+<h6 id="混合器定义（-mixin）"><a href="#混合器定义（-mixin）" class="headerlink" title="混合器定义（@mixin）"></a>混合器定义（@mixin）</h6><p>混合器定义通过@mixin指令<br>定义一个简单的清除浮动混合器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@mixin clearfix&#123;</span><br><span class="line">    display:block;</span><br><span class="line">    &amp;:before,</span><br><span class="line">    &amp;:after&#123;</span><br><span class="line">        content:&apos;&apos;;</span><br><span class="line">    &#125;,</span><br><span class="line">    &amp;:after&#123;</span><br><span class="line">        clear:both;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@mixin large-text &#123;</span><br><span class="line">  font: &#123;</span><br><span class="line">    family: Arial;</span><br><span class="line">    size: 20px;</span><br><span class="line">    weight: bold;</span><br><span class="line">  &#125;</span><br><span class="line">  color: #ff0000;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="引入混合器（-include）"><a href="#引入混合器（-include）" class="headerlink" title="引入混合器（@include）"></a>引入混合器（@include）</h6><p>使用 @include 指令可以将混入（mixin）引入到文档中。这需要一个混入的名称和可选的参数传递给它，并包括由混入定义的当前规则的样式,混入（mixin）定义也可以包含其他的混入. 例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#main&#123;</span><br><span class="line">    @include large-text;</span><br><span class="line">    @include clearfix;</span><br><span class="line">    padding:20px;</span><br><span class="line">    margin:5px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="混合器传参"><a href="#混合器传参" class="headerlink" title="混合器传参"></a>混合器传参</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@mixin links-colors($normal,$hover,$visite)&#123;</span><br><span class="line">    color:$normal</span><br><span class="line">    &amp;:hover&#123;</span><br><span class="line">        color:$hover</span><br><span class="line">    &#125;</span><br><span class="line">    &amp;:visite&#123;</span><br><span class="line">        color:$visite</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>引入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">a&#123;</span><br><span class="line">   @include links-color(#ccc,#f00,#999);</span><br><span class="line">&#125;</span><br><span class="line">//编译成</span><br><span class="line"></span><br><span class="line">a&#123;color:#ccc&#125;</span><br><span class="line">a:hover&#123;color:#f00&#125;</span><br><span class="line">a:visted&#123;color:#999&#125;</span><br></pre></td></tr></table></figure></p>
+<h6 id="默认参数值"><a href="#默认参数值" class="headerlink" title="默认参数值"></a>默认参数值</h6><p>为了在@include混合器时不必传入所有的参数，我们可以给参数指定一个默认值。参数默认值使用$name: default-value的声明形式，默认值可以是任何有效的css属性值，甚至是其他参数的引用，如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@mixin link-colors(</span><br><span class="line">    $normal,</span><br><span class="line">    $hover: $normal,</span><br><span class="line">    $visited: $normal</span><br><span class="line">  )</span><br><span class="line">&#123;</span><br><span class="line">  color: $normal;</span><br><span class="line">  &amp;:hover &#123; color: $hover; &#125;</span><br><span class="line">  &amp;:visited &#123; color: $visited; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/sass/" rel="tag"># sass</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/03/sass基本用法/" rel="next" title="sass基本用法第一篇">
+                <i class="fa fa-chevron-left"></i> sass基本用法第一篇
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/07/Worker/" rel="prev" title="Worker">
+                Worker <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div id="gitalk-container"></div>  
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">PTY</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#sass-导入文件"><span class="nav-number">1.</span> <span class="nav-text">sass 导入文件</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#sass-默认变量值-（-default）"><span class="nav-number">1.1.</span> <span class="nav-text">sass 默认变量值 （!default）</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#sass嵌套导入"><span class="nav-number">1.2.</span> <span class="nav-text">sass嵌套导入</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#静默注释-和"><span class="nav-number">2.</span> <span class="nav-text">静默注释 (/ / 和 //)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#混合器（mixin）"><span class="nav-number">3.</span> <span class="nav-text">混合器（mixin）</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#混合器定义（-mixin）"><span class="nav-number">3.1.</span> <span class="nav-text">混合器定义（@mixin）</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#引入混合器（-include）"><span class="nav-number">3.2.</span> <span class="nav-text">引入混合器（@include）</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#混合器传参"><span class="nav-number">3.3.</span> <span class="nav-text">混合器传参</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#默认参数值"><span class="nav-number">3.4.</span> <span class="nav-text">默认参数值</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">PTY</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">17.0k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共17.0k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script type="text/javascript">
+      var gitalk = new Gitalk({
+        clientID: '6c496cd68f8c39e3cf4b',
+        clientSecret: 'b337f7b8fa8d192c1fe5f0773d20249146d31cc2',
+        repo: 'ptylll.github.io',
+        owner: 'ptylll',
+        admin: ['ptylll'],
+        id: location.pathname,
+        distractionFreeMode: 'true'
+      })
+      gitalk.render('gitalk-container')           
+      </script>
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
