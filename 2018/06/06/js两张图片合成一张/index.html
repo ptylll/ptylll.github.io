@@ -94,17 +94,17 @@
 
 
 
-<meta name="description" content="js利用canvas元素合成图片主要使用到canvas上的drawImage()方法。drawImage() 方法在画布上绘制图像、画布或视频。drawImage() 方法也能够绘制图像的某些部分，以及/或者增加或减少图像的尺寸。 drawImage()用法1.在画布上定位图像：1drawImage(img,x,y) 2.在画布上定位图像设置宽高：1drawImage(img,x,y,with,h">
+<meta name="description" content="js利用canvas元素合成图片主要使用到canvas上的drawImage()方法。drawImage() 方法在画布上绘制图像、画布或视频。drawImage() 方法也能够绘制图像的某些部分，以及/或者增加或减少图像的尺寸。 drawImage()用法1.在画布上定位图像： 1drawImage(img,x,y) 2.在画布上定位图像设置宽高： 1drawImage(img,x,y,with">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js两张图片合成一张">
 <meta property="og:url" content="https://ptylll.github.io/2018/06/06/js两张图片合成一张/index.html">
 <meta property="og:site_name" content="PTY">
-<meta property="og:description" content="js利用canvas元素合成图片主要使用到canvas上的drawImage()方法。drawImage() 方法在画布上绘制图像、画布或视频。drawImage() 方法也能够绘制图像的某些部分，以及/或者增加或减少图像的尺寸。 drawImage()用法1.在画布上定位图像：1drawImage(img,x,y) 2.在画布上定位图像设置宽高：1drawImage(img,x,y,with,h">
+<meta property="og:description" content="js利用canvas元素合成图片主要使用到canvas上的drawImage()方法。drawImage() 方法在画布上绘制图像、画布或视频。drawImage() 方法也能够绘制图像的某些部分，以及/或者增加或减少图像的尺寸。 drawImage()用法1.在画布上定位图像： 1drawImage(img,x,y) 2.在画布上定位图像设置宽高： 1drawImage(img,x,y,with">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-15T03:29:32.893Z">
+<meta property="og:updated_time" content="2019-05-05T08:50:37.962Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js两张图片合成一张">
-<meta name="twitter:description" content="js利用canvas元素合成图片主要使用到canvas上的drawImage()方法。drawImage() 方法在画布上绘制图像、画布或视频。drawImage() 方法也能够绘制图像的某些部分，以及/或者增加或减少图像的尺寸。 drawImage()用法1.在画布上定位图像：1drawImage(img,x,y) 2.在画布上定位图像设置宽高：1drawImage(img,x,y,with,h">
+<meta name="twitter:description" content="js利用canvas元素合成图片主要使用到canvas上的drawImage()方法。drawImage() 方法在画布上绘制图像、画布或视频。drawImage() 方法也能够绘制图像的某些部分，以及/或者增加或减少图像的尺寸。 drawImage()用法1.在画布上定位图像： 1drawImage(img,x,y) 2.在画布上定位图像设置宽高： 1drawImage(img,x,y,with">
 
 
 
@@ -366,9 +366,12 @@
 
       
         <p>js利用canvas元素合成图片<br>主要使用到canvas上的drawImage()方法。<br>drawImage() 方法在画布上绘制图像、画布或视频。<br>drawImage() 方法也能够绘制图像的某些部分，以及/或者增加或减少图像的尺寸。</p>
-<h3 id="drawImage-用法"><a href="#drawImage-用法" class="headerlink" title="drawImage()用法"></a>drawImage()用法</h3><p>1.在画布上定位图像：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drawImage(img,x,y)</span><br></pre></td></tr></table></figure></p>
-<p>2.在画布上定位图像设置宽高：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drawImage(img,x,y,with,height)</span><br></pre></td></tr></table></figure></p>
-<p>3.剪切图像<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">context.drawImage(img,sx,sy,swidth,sheight,x,y,width,height);</span><br></pre></td></tr></table></figure></p>
+<h3 id="drawImage-用法"><a href="#drawImage-用法" class="headerlink" title="drawImage()用法"></a>drawImage()用法</h3><p>1.在画布上定位图像：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drawImage(img,x,y)</span><br></pre></td></tr></table></figure>
+<p>2.在画布上定位图像设置宽高：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">drawImage(img,x,y,<span class="keyword">with</span>,height)</span><br></pre></td></tr></table></figure>
+<p>3.剪切图像</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">context.drawImage(img,sx,sy,swidth,sheight,x,y,width,height);</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 <p>相关参数以及描述</p>
 <table>
@@ -417,7 +420,7 @@
 </tr>
 </tbody>
 </table>
-<h3 id="图片合成代码"><a href="#图片合成代码" class="headerlink" title="图片合成代码"></a>图片合成代码</h3><p>主要js代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var myCanvas = document.getElementById(&apos;myCanvas&apos;);</span><br><span class="line">  var c = myCanvas.getContext(&apos;2d&apos;);</span><br><span class="line"></span><br><span class="line">  var img = document.getElementById(&apos;img&apos;);</span><br><span class="line">  img.crossOrigin = &apos;Anonymous&apos;;</span><br><span class="line">  c.drawImage(img, 0, 0, 200, 200);</span><br><span class="line">  c.font = &apos;60px Courier New&apos;;</span><br><span class="line">  c.fillText(&apos;成功了&apos;, 0, 260);</span><br><span class="line">  var img02 = new Image();</span><br><span class="line">  img02.src = &apos;http://ot2pck40x.bkt.clouddn.com/timg.jpg&apos;;</span><br><span class="line">  img02.crossOrigin = &apos;Anonymous&apos;;</span><br><span class="line">  img02.onload = function() &#123;</span><br><span class="line">    c.drawImage(img02, 200, 0, 200, 200)</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="图片合成代码"><a href="#图片合成代码" class="headerlink" title="图片合成代码"></a>图片合成代码</h3><p>主要js代码<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myCanvas = <span class="built_in">document</span>.getElementById(<span class="string">'myCanvas'</span>);</span><br><span class="line">  <span class="keyword">var</span> c = myCanvas.getContext(<span class="string">'2d'</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> img = <span class="built_in">document</span>.getElementById(<span class="string">'img'</span>);</span><br><span class="line">  img.crossOrigin = <span class="string">'Anonymous'</span>;</span><br><span class="line">  c.drawImage(img, <span class="number">0</span>, <span class="number">0</span>, <span class="number">200</span>, <span class="number">200</span>);</span><br><span class="line">  c.font = <span class="string">'60px Courier New'</span>;</span><br><span class="line">  c.fillText(<span class="string">'成功了'</span>, <span class="number">0</span>, <span class="number">260</span>);</span><br><span class="line">  <span class="keyword">var</span> img02 = <span class="keyword">new</span> Image();</span><br><span class="line">  img02.src = <span class="string">'http://ot2pck40x.bkt.clouddn.com/timg.jpg'</span>;</span><br><span class="line">  img02.crossOrigin = <span class="string">'Anonymous'</span>;</span><br><span class="line">  img02.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    c.drawImage(img02, <span class="number">200</span>, <span class="number">0</span>, <span class="number">200</span>, <span class="number">200</span>)</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
 <p>在线运行</p>
 <script async src="//jsfiddle.net/ptylll/xc0t7j15/embed/"></script>
 
@@ -447,8 +450,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/28/js实现斐波那契数/" rel="next" title="'js实现斐波那契数'">
-                <i class="fa fa-chevron-left"></i> 'js实现斐波那契数'
+              <a href="/2018/05/24/ES6中的Promise/" rel="next" title="ES6 中的Promise">
+                <i class="fa fa-chevron-left"></i> ES6 中的Promise
               </a>
             
           </div>
@@ -538,7 +541,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -551,7 +554,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -618,7 +621,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">17.0k</span>
+    <span title="Site words total count">17.3k</span>
   
 </div>
 
@@ -638,7 +641,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共17.0k字</span>
+  <span class="post-count">博客全站共17.3k字</span>
 </div>
 
         
