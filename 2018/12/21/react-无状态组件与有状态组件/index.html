@@ -6,7 +6,7 @@
 
 
 <html class="theme-next pisces use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -102,7 +102,7 @@
 <meta property="og:site_name" content="PTY">
 <meta property="og:description" content="无状态组件概念  无状态组件是通过无状态的函数创建，它只是一种负责展示的纯组件，一般用于按钮、标签、输入框等纯展示组件，无状态组件本事不需要state来管理状态，数据是通过props传递进来，再通过render渲染。 特点 组件本身并无状态（state） 相同的props输入会得到相同的输出结果 组件本身并没有生命周期 一般用于按钮，输入框等复用性较强的组件">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-05T08:52:32.464Z">
+<meta property="og:updated_time" content="2019-06-20T07:57:20.984Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="react 无状态组件与有状态组件">
 <meta name="twitter:description" content="无状态组件概念  无状态组件是通过无状态的函数创建，它只是一种负责展示的纯组件，一般用于按钮、标签、输入框等纯展示组件，无状态组件本事不需要state来管理状态，数据是通过props传递进来，再通过render渲染。 特点 组件本身并无状态（state） 相同的props输入会得到相同的输出结果 组件本身并没有生命周期 一般用于按钮，输入框等复用性较强的组件">
@@ -206,32 +206,22 @@
         </li>
       
         
-        <li class="menu-item menu-item-关于">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-标签">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            标签
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-分类">
-          <a href="/categories/" rel="section">
+          <a href="/categories" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
           </a>
         </li>
       
@@ -307,6 +297,28 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/React/" itemprop="url" rel="index">
+                    <span itemprop="name">React</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -466,8 +478,6 @@
           
 
   
-    <div id="gitalk-container"></div>  
-  
 
 
 
@@ -521,6 +531,15 @@
               </div>
             
 
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
             
 
             
@@ -771,22 +790,6 @@
 
 
 
-
-
-  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-  <script type="text/javascript">
-      var gitalk = new Gitalk({
-        clientID: '6c496cd68f8c39e3cf4b',
-        clientSecret: 'b337f7b8fa8d192c1fe5f0773d20249146d31cc2',
-        repo: 'ptylll.github.io',
-        owner: 'ptylll',
-        admin: ['ptylll'],
-        id: location.pathname,
-        distractionFreeMode: 'true'
-      })
-      gitalk.render('gitalk-container')           
-      </script>
 
 
   

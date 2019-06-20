@@ -6,7 +6,7 @@
 
 
 <html class="theme-next pisces use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -83,7 +83,7 @@
 
 
 
-  <meta name="keywords" content="js算法,">
+  <meta name="keywords" content="算法,">
 
 
 
@@ -95,14 +95,14 @@
 
 
 <meta name="description" content="二分法查找的前提是数据是先排列好的实现原理：每次找到数组中的中间值做比较 已知数组 array[k]是先排列好的，array[k]中间值为 m查找值为 T，如果 T 大于 array[m]去右边查找，如果 T 小于 array[m]去左边查找，依次递归查找。时间复杂程度为 O(log2n)最坏情况是 查找元素为第一个或者最后一个最好情况为 查找元素为中间元素（奇数长度数列的正中间，偶数长度数列的中">
-<meta name="keywords" content="js算法">
+<meta name="keywords" content="算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js二分法查找">
 <meta property="og:url" content="https://ptylll.github.io/2018/07/19/js二分法查找/index.html">
 <meta property="og:site_name" content="PTY">
 <meta property="og:description" content="二分法查找的前提是数据是先排列好的实现原理：每次找到数组中的中间值做比较 已知数组 array[k]是先排列好的，array[k]中间值为 m查找值为 T，如果 T 大于 array[m]去右边查找，如果 T 小于 array[m]去左边查找，依次递归查找。时间复杂程度为 O(log2n)最坏情况是 查找元素为第一个或者最后一个最好情况为 查找元素为中间元素（奇数长度数列的正中间，偶数长度数列的中">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-05-05T08:50:52.079Z">
+<meta property="og:updated_time" content="2019-06-20T07:56:27.187Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js二分法查找">
 <meta name="twitter:description" content="二分法查找的前提是数据是先排列好的实现原理：每次找到数组中的中间值做比较 已知数组 array[k]是先排列好的，array[k]中间值为 m查找值为 T，如果 T 大于 array[m]去右边查找，如果 T 小于 array[m]去左边查找，依次递归查找。时间复杂程度为 O(log2n)最坏情况是 查找元素为第一个或者最后一个最好情况为 查找元素为中间元素（奇数长度数列的正中间，偶数长度数列的中">
@@ -206,32 +206,22 @@
         </li>
       
         
-        <li class="menu-item menu-item-关于">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-标签">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            标签
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-分类">
-          <a href="/categories/" rel="section">
+          <a href="/categories" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
           </a>
         </li>
       
@@ -307,6 +297,28 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -390,7 +402,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/js算法/" rel="tag"># js算法</a>
+            <a href="/tags/算法/" rel="tag"># 算法</a>
           
         </div>
       
@@ -445,8 +457,6 @@
           
 
   
-    <div id="gitalk-container"></div>  
-  
 
 
 
@@ -491,6 +501,15 @@
               </div>
             
 
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
             
 
             
@@ -725,22 +744,6 @@
 
 
 
-
-
-  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-  <script type="text/javascript">
-      var gitalk = new Gitalk({
-        clientID: '6c496cd68f8c39e3cf4b',
-        clientSecret: 'b337f7b8fa8d192c1fe5f0773d20249146d31cc2',
-        repo: 'ptylll.github.io',
-        owner: 'ptylll',
-        admin: ['ptylll'],
-        id: location.pathname,
-        distractionFreeMode: 'true'
-      })
-      gitalk.render('gitalk-container')           
-      </script>
 
 
   

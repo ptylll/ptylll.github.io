@@ -6,7 +6,7 @@
 
 
 <html class="theme-next pisces use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -103,7 +103,7 @@
 <meta property="og:description" content="javascript是单线程,一次只能执行一个任务。当在 HTML 页面中执行脚本时，页面的状态是不可响应的，直到脚本已完成。这就会导致影响页面性能问题。web Worker是运行在后台的js脚本，不影响页面性能。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://ot2pck40x.bkt.clouddn.com/4MBC%602R14~7K%7DK%25VV%252PRL8.png">
-<meta property="og:updated_time" content="2019-05-05T08:49:42.644Z">
+<meta property="og:updated_time" content="2019-06-20T07:55:45.906Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="h5新特性web Worker">
 <meta name="twitter:description" content="javascript是单线程,一次只能执行一个任务。当在 HTML 页面中执行脚本时，页面的状态是不可响应的，直到脚本已完成。这就会导致影响页面性能问题。web Worker是运行在后台的js脚本，不影响页面性能。">
@@ -208,32 +208,22 @@
         </li>
       
         
-        <li class="menu-item menu-item-关于">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-标签">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            标签
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-分类">
-          <a href="/categories/" rel="section">
+          <a href="/categories" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
           </a>
         </li>
       
@@ -309,6 +299,28 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/h5/" itemprop="url" rel="index">
+                    <span itemprop="name">H5</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -467,8 +479,6 @@
           
 
   
-    <div id="gitalk-container"></div>  
-  
 
 
 
@@ -522,6 +532,15 @@
               </div>
             
 
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
             
 
             
@@ -772,22 +791,6 @@
 
 
 
-
-
-  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-  <script type="text/javascript">
-      var gitalk = new Gitalk({
-        clientID: '6c496cd68f8c39e3cf4b',
-        clientSecret: 'b337f7b8fa8d192c1fe5f0773d20249146d31cc2',
-        repo: 'ptylll.github.io',
-        owner: 'ptylll',
-        admin: ['ptylll'],
-        id: location.pathname,
-        distractionFreeMode: 'true'
-      })
-      gitalk.render('gitalk-container')           
-      </script>
 
 
   

@@ -6,7 +6,7 @@
 
 
 <html class="theme-next pisces use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -107,7 +107,7 @@
 <meta property="og:image" content="https://i.loli.net/2019/06/20/5d0af5ba1972879261.jpg">
 <meta property="og:image" content="https://i.loli.net/2019/06/20/5d0afd52a740133902.jpg">
 <meta property="og:image" content="https://i.loli.net/2019/06/20/5d0b27b66a7dd76762.jpg">
-<meta property="og:updated_time" content="2019-06-20T07:12:29.841Z">
+<meta property="og:updated_time" content="2019-06-20T07:55:09.342Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="electron进程通讯">
 <meta name="twitter:description" content="Electron分为主线程（mian）和渲染线程（Renderer）,当我们网页上需要操作执行electron系统上的命令时就需要调用主线程。当执系统上程序执行完会反馈到页面中。我们这把这一过程称之为进程通讯。解决这类需求通常需要IPC通讯。 定义: 运行package.json的main脚本的进程称之为Main Process; 每一个网页都运行在独立的进程里，称之为Renderer Proce">
@@ -212,32 +212,22 @@
         </li>
       
         
-        <li class="menu-item menu-item-关于">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
-            
-            关于
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-标签">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
-            
-            标签
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-分类">
-          <a href="/categories/" rel="section">
+          <a href="/categories" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
             
             分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-归档">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
           </a>
         </li>
       
@@ -313,6 +303,28 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Electron/" itemprop="url" rel="index">
+                    <span itemprop="name">Electron</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -483,8 +495,6 @@
           
 
   
-    <div id="gitalk-container"></div>  
-  
 
 
 
@@ -538,6 +548,15 @@
               </div>
             
 
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
             
 
             
@@ -788,22 +807,6 @@
 
 
 
-
-
-  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-  <script type="text/javascript">
-      var gitalk = new Gitalk({
-        clientID: '6c496cd68f8c39e3cf4b',
-        clientSecret: 'b337f7b8fa8d192c1fe5f0773d20249146d31cc2',
-        repo: 'ptylll.github.io',
-        owner: 'ptylll',
-        admin: ['ptylll'],
-        id: location.pathname,
-        distractionFreeMode: 'true'
-      })
-      gitalk.render('gitalk-container')           
-      </script>
 
 
   
