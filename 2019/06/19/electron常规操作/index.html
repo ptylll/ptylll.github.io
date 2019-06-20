@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #000; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Electron,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Electron分为主线程（mian）和渲染线程（Renderer）,当我们网页上需要操作执行electron系统上的命令时就需要调用主线程。当执系统上程序执行完会反馈到页面中。我们这把这一过程称之为进程通讯。解决这类需求通常需要IPC通讯。 定义: 运行package.json的main脚本的进程称之为Main Process; 每一个网页都运行在独立的进程里，称之为Renderer Proce">
+<meta name="keywords" content="Electron">
+<meta property="og:type" content="article">
+<meta property="og:title" content="electron进程通讯">
+<meta property="og:url" content="https://ptylll.github.io/2019/06/19/electron常规操作/index.html">
+<meta property="og:site_name" content="PTY">
+<meta property="og:description" content="Electron分为主线程（mian）和渲染线程（Renderer）,当我们网页上需要操作执行electron系统上的命令时就需要调用主线程。当执系统上程序执行完会反馈到页面中。我们这把这一过程称之为进程通讯。解决这类需求通常需要IPC通讯。 定义: 运行package.json的main脚本的进程称之为Main Process; 每一个网页都运行在独立的进程里，称之为Renderer Proce">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.loli.net/2019/06/20/5d0af5ba1972879261.jpg">
+<meta property="og:image" content="https://i.loli.net/2019/06/20/5d0af5ba191eb59772.jpg">
+<meta property="og:image" content="https://i.loli.net/2019/06/20/5d0af5ba1972879261.jpg">
+<meta property="og:image" content="https://i.loli.net/2019/06/20/5d0afd52a740133902.jpg">
+<meta property="og:image" content="https://i.loli.net/2019/06/20/5d0b27b66a7dd76762.jpg">
+<meta property="og:updated_time" content="2019-06-20T07:12:29.841Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="electron进程通讯">
+<meta name="twitter:description" content="Electron分为主线程（mian）和渲染线程（Renderer）,当我们网页上需要操作执行electron系统上的命令时就需要调用主线程。当执系统上程序执行完会反馈到页面中。我们这把这一过程称之为进程通讯。解决这类需求通常需要IPC通讯。 定义: 运行package.json的main脚本的进程称之为Main Process; 每一个网页都运行在独立的进程里，称之为Renderer Proce">
+<meta name="twitter:image" content="https://i.loli.net/2019/06/20/5d0af5ba1972879261.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://ptylll.github.io/2019/06/19/electron常规操作/">
+
+
+
+
+
+  <title>electron进程通讯 | PTY</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">PTY</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">勤能补拙</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-首页">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-关于">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-标签">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-分类">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ptylll.github.io/2019/06/19/electron常规操作/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="PTY">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="PTY">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">electron进程通讯</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-19T15:35:53+08:00">
+                2019-06-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,103字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Electron分为主线程（mian）和渲染线程（Renderer）,当我们网页上需要操作执行electron系统上的命令时就需要调用主线程。当执系统上程序执行完会反馈到页面中。我们这把这一过程称之为进程通讯。解决这类需求通常需要<code>IPC</code>通讯。</p>
+<h4 id="定义"><a href="#定义" class="headerlink" title="定义:"></a>定义:</h4><ul>
+<li>运行package.json的main脚本的进程称之为Main Process;</li>
+<li>每一个网页都运行在独立的进程里，称之为Renderer Process。</li>
+</ul>
+<h5 id="ipcMain模块是EventEmitter类的一个实例。-当在主进程中使用时，它处理从渲染器进程（网页）发送出来的异步和同步信息。-从渲染器进程发送的消息将被发送到该模块。"><a href="#ipcMain模块是EventEmitter类的一个实例。-当在主进程中使用时，它处理从渲染器进程（网页）发送出来的异步和同步信息。-从渲染器进程发送的消息将被发送到该模块。" class="headerlink" title="ipcMain模块是EventEmitter类的一个实例。 当在主进程中使用时，它处理从渲染器进程（网页）发送出来的异步和同步信息。 从渲染器进程发送的消息将被发送到该模块。"></a>ipcMain模块是EventEmitter类的一个实例。 当在主进程中使用时，它处理从渲染器进程（网页）发送出来的异步和同步信息。 从渲染器进程发送的消息将被发送到该模块。</h5><p>发送消息时，事件名称为channel。<br>回复同步信息时，需要设置event.returnValue。</p>
+<a id="more"></a>
+<h4 id="主进程渲染进程异步发送消息"><a href="#主进程渲染进程异步发送消息" class="headerlink" title="主进程渲染进程异步发送消息"></a>主进程渲染进程异步发送消息</h4><p>渲染进程使用ipcRenderer.send发送异步消息，然后使用on事件监控主进程的返回值。主进程使用on事件监听消息，使用event.sender.send返回数据。<br>渲染进程和主进程进行关联，发送消息时，事件名称为channel。</p>
+<p>接收消息<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//渲染进程 index.html</span></span><br><span class="line"><span class="keyword">const</span> &#123;ipcRenderer&#125; = <span class="built_in">require</span>(<span class="string">'electron'</span>)</span><br><span class="line">ipcRenderer.send(<span class="string">'asynchronous-message'</span>, <span class="string">'ping'</span>)</span><br><span class="line">ipcRenderer.on(<span class="string">'asynchronous-reply'</span>, (event, arg) =&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(arg) <span class="comment">// 1111</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//主进程main.js</span></span><br><span class="line">  ipcMain.on(<span class="string">'asynchronous-message'</span>, (event, arg) =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;arg&#125;</span>cccc`</span>)<span class="comment">//pingcccc</span></span><br><span class="line">    event.sender.send(<span class="string">'asynchronous-reply'</span>, <span class="number">1111</span>)</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+<p>输出：<br>主进程输出：</p>
+<div align="left"><br><img src="https://i.loli.net/2019/06/20/5d0af5ba1972879261.jpg" alt="主进程输出"><br></div>
+
+<p>渲染控制台输出：</p>
+<div align="left"><br><img src="https://i.loli.net/2019/06/20/5d0af5ba191eb59772.jpg" alt="渲染进程"><br></div>
+
+<h4 id="主进程渲染进程同步发送消息"><a href="#主进程渲染进程同步发送消息" class="headerlink" title="主进程渲染进程同步发送消息"></a>主进程渲染进程同步发送消息</h4><p>渲染进程使用<code>ipcRenderer.sendSync</code>发送同步消息，主进程还是通过<code>on</code>事件监控，通过<code>event.returnValue</code>返回数据，渲染进程返回值直接为<code>ipcRenderer.sendSync</code>函数。</p>
+<p>缺点：<br>同步方式会阻碍渲染进程渲染,尽量避免同步发送。</p>
+<p>示例代码：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//index.js</span></span><br><span class="line">ipcMain.on(<span class="string">'sync-message'</span>, (event, arg) =&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(arg)</span><br><span class="line">  event.returnValue = <span class="number">22222</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//index.vue</span></span><br><span class="line"> sync () &#123;</span><br><span class="line">    <span class="keyword">let</span> syncMessage = ipcRenderer.sendSync(<span class="string">'sync-message'</span>, <span class="number">9999</span>)</span><br><span class="line">    <span class="built_in">console</span>.log(syncMessage)</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>渲染控制台输出：<br><img src="https://i.loli.net/2019/06/20/5d0af5ba1972879261.jpg" alt="主进程输出"></p>
+<p>渲染控制台输出：<br><img src="https://i.loli.net/2019/06/20/5d0afd52a740133902.jpg" alt="渲染进程"></p>
+<h4 id="主进程主动发送消息"><a href="#主进程主动发送消息" class="headerlink" title="主进程主动发送消息"></a>主进程主动发送消息</h4><p>在某些情况下主线程也可以主动向渲染线程发送消息。主线程通过<code>$winow.webContents.send</code>方法</p>
+<p>示例：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//index.js</span></span><br><span class="line"><span class="comment">//***</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">createWindow</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  win = <span class="keyword">new</span> BrowserWindow(&#123;</span><br><span class="line">    width: <span class="number">1200</span>,</span><br><span class="line">    height: <span class="number">600</span>,</span><br><span class="line">    frame: <span class="literal">false</span>,</span><br><span class="line">    webPreferences: &#123;</span><br><span class="line">      nodeIntegration: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)</span><br><span class="line">  win.loadFile(<span class="string">'index.html'</span>)</span><br><span class="line">  win.webContents.openDevTools()</span><br><span class="line">  win.webContents.on(<span class="string">'did-finish-load'</span>,()=&gt;&#123;</span><br><span class="line">    win.webContents.send(<span class="string">'main-message'</span>, <span class="number">123123</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">  win.on(<span class="string">'closed'</span>, () =&gt; &#123;</span><br><span class="line">    win = <span class="literal">null</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; ipcRenderer &#125; = <span class="built_in">require</span>(<span class="string">'electron'</span>)</span><br><span class="line">ipcRenderer.on(<span class="string">'main-message'</span>, (event, arg) =&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(arg)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.loli.net/2019/06/20/5d0b27b66a7dd76762.jpg" alt=""></p>
+<p>注意：当我们通过 <code>win.webContents.send()</code>发送向渲染线程发送消息时，需要通过<code>win.webContents.on(&#39;did-finish-load&#39;()=&gt;{})</code>函数检测渲染线程框架导航是否完成加载。</p>
+<h4 id="渲染线程之间发送消息"><a href="#渲染线程之间发送消息" class="headerlink" title="渲染线程之间发送消息"></a>渲染线程之间发送消息</h4><p>渲染线程之间通讯</p>
+<h5 id="主线程消息中转"><a href="#主线程消息中转" class="headerlink" title="主线程消息中转"></a>主线程消息中转</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// In the main process.</span></span><br><span class="line">ipcMain.on(<span class="string">'ping-event'</span>, (event, arg) =&gt; &#123;</span><br><span class="line">  yourWindow.webContents.send(<span class="string">'pong-event'</span>, <span class="string">'something'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// In renderer process</span></span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line">ipcRenderer.send(<span class="string">'ping-event'</span>, (event, arg) =&gt; &#123;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">  &#125;</span><br><span class="line">)</span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line">ipcRenderer.on(<span class="string">'pong-event'</span>, (event, arg) =&gt; &#123;</span><br><span class="line">    <span class="comment">// do something</span></span><br><span class="line">  &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h5 id="remote接口"><a href="#remote接口" class="headerlink" title="remote接口"></a>remote接口</h5><p>利用 remote 接口直接获取渲染进程发送消息：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">remote.BrowserWindow.fromId(winId).webContents.send(<span class="string">'ping'</span>, <span class="string">'someThing'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>渲染进程获取 ID 就有多种方法了：</p>
+<p>第一种： 通过 global 设置和获取<br>第一种是： 主进程创建事件，发送信息<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// main process</span></span><br><span class="line">win1.webContents.send(<span class="string">'distributeIds'</span>,&#123;</span><br><span class="line">    win2Id : win2.id</span><br><span class="line">&#125;);</span><br><span class="line">win2.webContents.send(<span class="string">'distributeIds'</span>,&#123;</span><br><span class="line">    win1Id : win1.id</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h4 id="WebContents"><a href="#WebContents" class="headerlink" title="WebContents"></a>WebContents</h4><p><code>webContents</code>是<code>EventEmitter</code>的实例负责渲染和控制网页,是<code>BrowserWindow</code>对象的一个属性。</p>
+<h5 id="webContents-getAllWebContents"><a href="#webContents-getAllWebContents" class="headerlink" title="webContents.getAllWebContents()"></a><code>webContents.getAllWebContents()</code></h5><p>返回<code>WebContents[]</code> - 所有 WebContents 实例的数组包含所有<code>Windows，webviews，opened devtools</code>和devtools扩展背景页的web内容</p>
+<h5 id="webContents-getFocusedWebContents"><a href="#webContents-getFocusedWebContents" class="headerlink" title="webContents.getFocusedWebContents()"></a><code>webContents.getFocusedWebContents()</code></h5><p><code>Returns WebContents</code>-此app中焦点的web内容否则返回null。</p>
+<h5 id="webContents-fromId-id"><a href="#webContents-fromId-id" class="headerlink" title="webContents.fromId(id)"></a><code>webContents.fromId(id)</code></h5><p><code>Returns WebContents</code>给定id的WebContents实例。</p>
+<h4 id="WebContents事件-常用"><a href="#WebContents事件-常用" class="headerlink" title="WebContents事件(常用)"></a>WebContents事件(常用)</h4><h5 id="did-finish-load"><a href="#did-finish-load" class="headerlink" title="did-finish-load"></a><code>did-finish-load</code></h5><p>导航完成时触发，即选项卡的旋转器将停止旋转，并指派onload事件后</p>
+<h5 id="did-fail-load"><a href="#did-fail-load" class="headerlink" title="did-fail-load"></a><code>did-fail-load</code></h5><p>导航加载失败时触发，与<code>did-finish-load</code>事件相反</p>
+<h5 id="did-frame-finish-load"><a href="#did-frame-finish-load" class="headerlink" title="did-frame-finish-load"></a><code>did-frame-finish-load</code></h5><p>框架导航加载完成触发</p>
+<h5 id="did-start-loading"><a href="#did-start-loading" class="headerlink" title="did-start-loading"></a><code>did-start-loading</code></h5><p>当tab中的旋转指针（spinner）开始旋转时，就会触发该事件</p>
+<h5 id="did-stop-loading"><a href="#did-stop-loading" class="headerlink" title="did-stop-loading"></a><code>did-stop-loading</code></h5><p>当tab中的旋转指针（spinner）结束旋转时，就会触发该事件。</p>
+<h5 id="did-ready"><a href="#did-ready" class="headerlink" title="did-ready"></a><code>did-ready</code></h5><p>一个框架中的文本加载完成后触发该事件。</p>
+<h4 id="参考地址"><a href="#参考地址" class="headerlink" title="参考地址"></a>参考地址</h4><p><a href="https://github.com/electron/electron/blob/master/docs/api/web-contents.md#contentssendchannel-arg1-arg2-" target="_blank" rel="noopener">https://github.com/electron/electron/blob/master/docs/api/web-contents.md#contentssendchannel-arg1-arg2-</a><br><a href="https://electronjs.org/docs/api/web-contents" target="_blank" rel="noopener">https://electronjs.org/docs/api/web-contents</a><br><a href="https://segmentfault.com/a/1190000009253100" target="_blank" rel="noopener">https://segmentfault.com/a/1190000009253100</a><br><a href="https://electronjs.org/docs/api/remote" target="_blank" rel="noopener">https://electronjs.org/docs/api/remote</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Electron/" rel="tag"># Electron</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/21/koa-Post接收数据/" rel="next" title="koa get,post接收数据">
+                <i class="fa fa-chevron-left"></i> koa get,post接收数据
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div id="gitalk-container"></div>  
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">PTY</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义"><span class="nav-number">1.</span> <span class="nav-text">定义:</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#ipcMain模块是EventEmitter类的一个实例。-当在主进程中使用时，它处理从渲染器进程（网页）发送出来的异步和同步信息。-从渲染器进程发送的消息将被发送到该模块。"><span class="nav-number">1.1.</span> <span class="nav-text">ipcMain模块是EventEmitter类的一个实例。 当在主进程中使用时，它处理从渲染器进程（网页）发送出来的异步和同步信息。 从渲染器进程发送的消息将被发送到该模块。</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#主进程渲染进程异步发送消息"><span class="nav-number">2.</span> <span class="nav-text">主进程渲染进程异步发送消息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#主进程渲染进程同步发送消息"><span class="nav-number">3.</span> <span class="nav-text">主进程渲染进程同步发送消息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#主进程主动发送消息"><span class="nav-number">4.</span> <span class="nav-text">主进程主动发送消息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#渲染线程之间发送消息"><span class="nav-number">5.</span> <span class="nav-text">渲染线程之间发送消息</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#主线程消息中转"><span class="nav-number">5.1.</span> <span class="nav-text">主线程消息中转</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#remote接口"><span class="nav-number">5.2.</span> <span class="nav-text">remote接口</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WebContents"><span class="nav-number">6.</span> <span class="nav-text">WebContents</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#webContents-getAllWebContents"><span class="nav-number">6.1.</span> <span class="nav-text">webContents.getAllWebContents()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#webContents-getFocusedWebContents"><span class="nav-number">6.2.</span> <span class="nav-text">webContents.getFocusedWebContents()</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#webContents-fromId-id"><span class="nav-number">6.3.</span> <span class="nav-text">webContents.fromId(id)</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WebContents事件-常用"><span class="nav-number">7.</span> <span class="nav-text">WebContents事件(常用)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#did-finish-load"><span class="nav-number">7.1.</span> <span class="nav-text">did-finish-load</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#did-fail-load"><span class="nav-number">7.2.</span> <span class="nav-text">did-fail-load</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#did-frame-finish-load"><span class="nav-number">7.3.</span> <span class="nav-text">did-frame-finish-load</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#did-start-loading"><span class="nav-number">7.4.</span> <span class="nav-text">did-start-loading</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#did-stop-loading"><span class="nav-number">7.5.</span> <span class="nav-text">did-stop-loading</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#did-ready"><span class="nav-number">7.6.</span> <span class="nav-text">did-ready</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考地址"><span class="nav-number">8.</span> <span class="nav-text">参考地址</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">PTY</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">20.2k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共20.2k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <script type="text/javascript">
+      var gitalk = new Gitalk({
+        clientID: '6c496cd68f8c39e3cf4b',
+        clientSecret: 'b337f7b8fa8d192c1fe5f0773d20249146d31cc2',
+        repo: 'ptylll.github.io',
+        owner: 'ptylll',
+        admin: ['ptylll'],
+        id: location.pathname,
+        distractionFreeMode: 'true'
+      })
+      gitalk.render('gitalk-container')           
+      </script>
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
