@@ -83,7 +83,7 @@
 
 
 
-  <meta name="keywords" content="Hexo,NexT">
+  <meta name="keywords" content="js,">
 
 
 
@@ -94,17 +94,18 @@
 
 
 
-<meta name="description" content="Blob 对象表示一个不可变、原始数据的类文件对象。Blob 表示的不一定是JavaScript原生格式的数据。File 接口基于Blob，继承了 blob 的功能并将其扩展使其支持用户系统上的文件。">
+<meta name="description" content="reduce() 方法对数组中的每个元素执行一个由您提供的reducer函数(升序执行)，将其结果汇总为单个返回值。 语法1arr.reduce(function(total,currentValue,currentIndex,arr)[ initialValue]) reduce函数接收4个参数：  total (acc) (累计器) currentValue Value (cur) (当前值)">
+<meta name="keywords" content="js">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Blob对象">
-<meta property="og:url" content="https://ptylll.github.io/2018/06/19/Blob对象/index.html">
+<meta property="og:title" content="reduce基本用法">
+<meta property="og:url" content="https://ptylll.github.io/2019/07/03/reduce基本用法/index.html">
 <meta property="og:site_name" content="PTY">
-<meta property="og:description" content="Blob 对象表示一个不可变、原始数据的类文件对象。Blob 表示的不一定是JavaScript原生格式的数据。File 接口基于Blob，继承了 blob 的功能并将其扩展使其支持用户系统上的文件。">
+<meta property="og:description" content="reduce() 方法对数组中的每个元素执行一个由您提供的reducer函数(升序执行)，将其结果汇总为单个返回值。 语法1arr.reduce(function(total,currentValue,currentIndex,arr)[ initialValue]) reduce函数接收4个参数：  total (acc) (累计器) currentValue Value (cur) (当前值)">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-20T08:07:11.853Z">
+<meta property="og:updated_time" content="2019-07-03T03:04:16.635Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Blob对象">
-<meta name="twitter:description" content="Blob 对象表示一个不可变、原始数据的类文件对象。Blob 表示的不一定是JavaScript原生格式的数据。File 接口基于Blob，继承了 blob 的功能并将其扩展使其支持用户系统上的文件。">
+<meta name="twitter:title" content="reduce基本用法">
+<meta name="twitter:description" content="reduce() 方法对数组中的每个元素执行一个由您提供的reducer函数(升序执行)，将其结果汇总为单个返回值。 语法1arr.reduce(function(total,currentValue,currentIndex,arr)[ initialValue]) reduce函数接收4个参数：  total (acc) (累计器) currentValue Value (cur) (当前值)">
 
 
 
@@ -134,13 +135,13 @@
 
 
 
-  <link rel="canonical" href="https://ptylll.github.io/2018/06/19/Blob对象/">
+  <link rel="canonical" href="https://ptylll.github.io/2019/07/03/reduce基本用法/">
 
 
 
 
 
-  <title>Blob对象 | PTY</title>
+  <title>reduce基本用法 | PTY</title>
   
 
 
@@ -257,7 +258,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ptylll.github.io/2018/06/19/Blob对象/">
+    <link itemprop="mainEntityOfPage" href="https://ptylll.github.io/2019/07/03/reduce基本用法/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="PTY">
@@ -274,7 +275,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Blob对象</h1>
+          <h1 class="post-title" itemprop="name headline">reduce基本用法</h1>
         
 
         <div class="post-meta">
@@ -286,8 +287,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-19T10:49:41+08:00">
-                2018-06-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-07-03T10:11:49+08:00">
+                2019-07-03
               </time>
             
 
@@ -327,8 +328,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/06/19/Blob对象/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/06/19/Blob对象/" itemprop="commentCount"></span>
+                <a href="/2019/07/03/reduce基本用法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/07/03/reduce基本用法/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -336,7 +337,7 @@
 
           
           
-             <span id="/2018/06/19/Blob对象/" class="leancloud_visitors" data-flag-title="Blob对象">
+             <span id="/2019/07/03/reduce基本用法/" class="leancloud_visitors" data-flag-title="reduce基本用法">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -361,7 +362,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  583字
+                  460字
                 </span>
               
 
@@ -377,7 +378,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3分钟
+                  2分钟
                 </span>
               
             </div>
@@ -398,17 +399,24 @@
       
 
       
-        <p>Blob 对象表示一个不可变、原始数据的类文件对象。Blob 表示的不一定是JavaScript原生格式的数据。File 接口基于Blob，继承了 blob 的功能并将其扩展使其支持用户系统上的文件。</p>
+        <p><code>reduce()</code> 方法对数组中的每个元素执行一个由您提供的reducer函数(升序执行)，将其结果汇总为单个返回值。</p>
+<h4 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr.reduce(function(total,currentValue,currentIndex,arr)[ initialValue])</span><br></pre></td></tr></table></figure>
+<p><code>reduce</code>函数接收4个参数：</p>
+<ol>
+<li>total (acc) (累计器)</li>
+<li>currentValue Value (cur) (当前值)</li>
+<li>currentIndex Index (idx) (当前索引)</li>
+<li>initialValue (src) (源数组)</li>
+</ol>
+<p>回调函数第一次执行时并且无initialValue时，prev的值为arr的第一项，cur的值为arr的第二项，index索引从1开始；<br>若有initialValue时，prev的值为initialValue, cur的值为arr的第一项，index索引从0开始；<br>initialValue设置prev的初始类型和初始值也就是叠加结果的类型。</p>
 <a id="more"></a>
-<h4 id="创建Blob"><a href="#创建Blob" class="headerlink" title="创建Blob"></a>创建Blob</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> blob = <span class="keyword">new</span> Blob(dataArray:<span class="built_in">Array</span>&lt;any&gt;,<span class="attr">opt</span>:&#123;<span class="attr">type</span>:string&#125;);</span><br></pre></td></tr></table></figure>
-<p>dataArray：数组，包含了要添加到Blob对象中的数据，数据可以是任意多个ArrayBuffer，ArrayBufferView， Blob，或者 DOMString对象。<br>opt：对象，用于设置Blob对象的属性（如：MIME类型）</p>
-<h4 id="slice-方法"><a href="#slice-方法" class="headerlink" title="slice 方法"></a>slice 方法</h4><p>slice方法，截取Blob返回一个新的Blob对象。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">slice([start[,end[,contentType]]])</span><br></pre></td></tr></table></figure></p>
-<p>start:可选，Blob下标，表示截取Blob的起始位置。如果为负值将会从数据的末尾开始截取。<br>end:可选，Blob下标，表示截取Blob的结束位置。如果为负值将会从数据的末尾开始截取。<br>contentType: 可选，给新的 Blob 赋予一个新的文档类型。这将会把它的 type 属性设为被传入的值。它的默认值是一个空的字符串。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> data01 = <span class="string">'abcdefg'</span>;</span><br><span class="line"><span class="keyword">var</span> blobs01 = <span class="keyword">new</span> Blob([datas]);</span><br><span class="line"><span class="keyword">var</span> blob2 = blobs01.slice(<span class="number">0</span>,<span class="number">3</span>)</span><br><span class="line"><span class="built_in">console</span>.log(blob2) <span class="comment">// Blob(3)&#123;size:3,type:''&#125;</span></span><br></pre></td></tr></table></figure>
-<h4 id="Blob分段上传"><a href="#Blob分段上传" class="headerlink" title="Blob分段上传"></a>Blob分段上传</h4><p>File继承与Blob，可以利用Slice方法对大文件进行分割上传<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">onChange</span>=<span class="string">'uploadFile(this)'</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">id</span>=<span class="string">"file"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">  <span class="function"><span class="keyword">function</span> <span class="title">uploadFile</span>(<span class="params">el</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> file = el.files[<span class="number">0</span>];</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> chunkSize = <span class="number">1024</span> * <span class="number">1024</span>;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> totalSize = file.size;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> ChunkQuantity = <span class="built_in">Math</span>.ceil(totalSize / chunkSize);</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> offset = <span class="number">0</span>;</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> fileReader = <span class="keyword">new</span> FileReader();</span></span><br><span class="line"><span class="javascript">    fileReader.onload = <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">      <span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest();</span></span><br><span class="line"><span class="javascript">      xhr.open(<span class="string">'POST'</span>, <span class="string">'https://www.xxxx.upload'</span>);</span></span><br><span class="line"><span class="javascript">      xhr.onreadystatechange = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">if</span> (xhr.readyState === XMLHttpRequest.DONE &amp;&amp; xhr.status === <span class="number">200</span>) &#123;</span></span><br><span class="line"><span class="undefined">          ++offset;</span></span><br><span class="line"><span class="javascript">          <span class="keyword">if</span> (offset === totalSize) &#123;</span></span><br><span class="line"><span class="javascript">            alert(<span class="string">'上传成功'</span>)</span></span><br><span class="line"><span class="javascript">          &#125; <span class="keyword">else</span> <span class="keyword">if</span> (offset === ChunkQuantity - <span class="number">1</span>) &#123;</span></span><br><span class="line"><span class="undefined">            blob = file.slice(offset * chunkSize, totalSize);</span></span><br><span class="line"><span class="undefined">            reader.readAsBinaryString(blob);</span></span><br><span class="line"><span class="javascript">          &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="undefined">            blob = file.slice(offset * chunkSize, (offset + 1) * chunkSize);</span></span><br><span class="line"><span class="undefined">            reader.readAsBinaryString(blob);</span></span><br><span class="line"><span class="undefined">          &#125;</span></span><br><span class="line"><span class="javascript">        &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="javascript">          alert(<span class="string">'上传失败'</span>)</span></span><br><span class="line"><span class="undefined">        &#125;</span></span><br><span class="line"><span class="undefined">      &#125;</span></span><br><span class="line"><span class="javascript">      <span class="keyword">if</span> (xhr.sendAsBinary) &#123;</span></span><br><span class="line"><span class="javascript">        xhr.sendAsBinary(e.target.result); <span class="comment">// e.target.result是此次读取的分片二进制数据</span></span></span><br><span class="line"><span class="javascript">      &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="undefined">        xhr.send(e.target.result);</span></span><br><span class="line"><span class="undefined">      &#125;</span></span><br><span class="line"><span class="undefined">    &#125;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> blob = file.slice(<span class="number">0</span>, chunkSize);</span></span><br><span class="line"><span class="undefined">    reader.readAsBinaryString(blob);</span></span><br><span class="line"><span class="undefined">  &#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<h4 id="Blob-URL-图片预览"><a href="#Blob-URL-图片预览" class="headerlink" title="Blob URL 图片预览"></a>Blob URL 图片预览</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">onchange</span>=<span class="string">"uploadFile(this)"</span> <span class="attr">id</span>=<span class="string">"blob"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript"><span class="function"><span class="keyword">function</span> <span class="title">uploadFile</span>(<span class="params">e</span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> file = e.files[<span class="number">0</span>];</span></span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> url = URL.createObjectURL(file);</span></span><br><span class="line"><span class="javascript">  <span class="keyword">var</span> img = <span class="built_in">document</span>.createElement(<span class="string">'img'</span>);</span></span><br><span class="line"><span class="undefined">      img.src = url;</span></span><br><span class="line"><span class="javascript">  <span class="built_in">document</span>.body.appendChild(img)</span></span><br><span class="line"><span class="undefined">&#125; </span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>在线代码：</p>
-<p><script async src="//jsfiddle.net/ptylll/grd6b3e1/embed/"></script><br>参考地址：<br><a href="https://juejin.im/post/59e35d0e6fb9a045030f1f35" target="_blank" rel="noopener">https://juejin.im/post/59e35d0e6fb9a045030f1f35</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Blob" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/API/Blob</a></p>
+<h4 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h4><h5 id="数组求和"><a href="#数组求和" class="headerlink" title="数组求和"></a>数组求和</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let arr = [4,5,6]</span><br><span class="line">let sum = arr.reduce((total,curr)=&gt;total + curr) //15</span><br></pre></td></tr></table></figure>
+<h5 id="对象数字求和"><a href="#对象数字求和" class="headerlink" title="对象数字求和"></a>对象数字求和</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">let arr = [</span><br><span class="line">  &#123;</span><br><span class="line">    id:0,</span><br><span class="line">    num:1</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    id:1,</span><br><span class="line">    num:10</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    id:2,</span><br><span class="line">    num:2</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    id:3,</span><br><span class="line">    num:3</span><br><span class="line">  &#125;,</span><br><span class="line">]</span><br><span class="line">let sum = arr.reduce((total,curr)=&gt;total + curr.num,0)//16</span><br></pre></td></tr></table></figure>
+<h5 id="数组最大值"><a href="#数组最大值" class="headerlink" title="数组最大值"></a>数组最大值</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let arrMax = [1,2,3,4,5,6,7,8,9]</span><br><span class="line">let max = arrMax.reduce((pre,curr)=&gt;&#123;</span><br><span class="line">  return pre[curr] &gt; curr ? pre[curr] : curr</span><br><span class="line">&#125;)//9</span><br></pre></td></tr></table></figure>
+<h5 id="求字符串中字母出现的次数"><a href="#求字符串中字母出现的次数" class="headerlink" title="求字符串中字母出现的次数"></a>求字符串中字母出现的次数</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let str = &apos;qwertyyuiqweavdgwerwr&apos;</span><br><span class="line">let strObj = str.split(&apos;&apos;).reduce((pre,curr)=&gt;&#123;</span><br><span class="line">    pre[curr] ? pre[curr]++ : pre[curr] = 1</span><br><span class="line">    return pre</span><br><span class="line">&#125;,&#123;&#125;)// &#123;a: 1, d: 1, e: 3, g: 1, i: 1, q: 2, r: 3, t: 1, u: 1, v: 1, w: 4, y: 2&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="数组除重"><a href="#数组除重" class="headerlink" title="数组除重"></a>数组除重</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let array = [1,2,3,4,5,6,7,8,9,1,1,3,45,4,,4,5]</span><br><span class="line">let removerRepetitionItem = array.reduce((pre,curr)=&gt;&#123;</span><br><span class="line">    if(pre.indexOf(curr) &lt; 0) pre.push(curr)</span><br><span class="line">    return pre</span><br><span class="line">&#125;,[])//[1, 2, 3, 4, 5, 6, 7, 8, 9, 45]</span><br></pre></td></tr></table></figure>
+<h5 id="多维数组拍平"><a href="#多维数组拍平" class="headerlink" title="多维数组拍平"></a>多维数组拍平</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let multiArray =[[12,3,45],[4,56,7],[9,9,9]]</span><br><span class="line">let arrayList = multiArray.reduce((pre,curr)=&gt;pre.concat(curr),[])//[12, 3, 45, 4, 56, 7, 9, 9, 9]</span><br></pre></td></tr></table></figure>
+<p>代码在线地址：<br><a href="https://runkit.com/pty/5d1c14f54eb6d40014e27c7a" target="_blank" rel="noopener">https://runkit.com/pty/5d1c14f54eb6d40014e27c7a</a><br>参考链接：<br><a href="https://juejin.im/post/5b4d35406fb9a04fd55ac064" target="_blank" rel="noopener">https://juejin.im/post/5b4d35406fb9a04fd55ac064</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce</a></p>
 
       
     </div>
@@ -424,6 +432,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/js/" rel="tag"># js</a>
+          
+        </div>
+      
 
       
       
@@ -433,8 +447,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/14/Object-defineProperty/" rel="next" title="Object.defineProperty">
-                <i class="fa fa-chevron-left"></i> Object.defineProperty
+              <a href="/2019/06/19/electron常规操作/" rel="next" title="electron进程通讯">
+                <i class="fa fa-chevron-left"></i> electron进程通讯
               </a>
             
           </div>
@@ -442,10 +456,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/06/22/text-stroke属性/" rel="prev" title="css3 text-fill-color text-stroke -webkit-linear-gradient -webkit-background-clip属性">
-                css3 text-fill-color text-stroke -webkit-linear-gradient -webkit-background-clip属性 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -580,7 +590,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建Blob"><span class="nav-number">1.</span> <span class="nav-text">创建Blob</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#slice-方法"><span class="nav-number">2.</span> <span class="nav-text">slice 方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Blob分段上传"><span class="nav-number">3.</span> <span class="nav-text">Blob分段上传</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Blob-URL-图片预览"><span class="nav-number">4.</span> <span class="nav-text">Blob URL 图片预览</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#语法"><span class="nav-number">1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用法"><span class="nav-number">2.</span> <span class="nav-text">用法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#数组求和"><span class="nav-number">2.1.</span> <span class="nav-text">数组求和</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#对象数字求和"><span class="nav-number">2.2.</span> <span class="nav-text">对象数字求和</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数组最大值"><span class="nav-number">2.3.</span> <span class="nav-text">数组最大值</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#求字符串中字母出现的次数"><span class="nav-number">2.4.</span> <span class="nav-text">求字符串中字母出现的次数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数组除重"><span class="nav-number">2.5.</span> <span class="nav-text">数组除重</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#多维数组拍平"><span class="nav-number">2.6.</span> <span class="nav-text">多维数组拍平</span></a></li></ol></li></ol></div>
             
 
           </div>
